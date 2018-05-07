@@ -6,5 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Galaxy Shooter/_Scenes/Game.unity
+    path: Assets/Galaxy Shooter/_Scenes/Main_Menu.unity
+    guid: d756497b7f317c946985f0159679115c
+  - enabled: 1
+    path: Assets/Galaxy Shooter/_Scenes/Single_Player.unity
     guid: e0a83c697ef61594499e9e9ad0a1984b
+  - enabled: 1
+    path: Assets/Galaxy Shooter/_Scenes/Co-Op_Mode.unity
+    guid: 132cdc20069e2c84181d7bdf62bed3d2

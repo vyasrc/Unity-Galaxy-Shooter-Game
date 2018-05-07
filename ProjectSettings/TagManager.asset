@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Laser
+  - Co-Op_Players
+  - Laser_Red
   layers:
   - Default
   - TransparentFX
