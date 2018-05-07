@@ -14,9 +14,6 @@ public class PowerUp : MonoBehaviour {
 	[SerializeField]
 	private AudioClip _clip; 
 
-	void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,7 +29,7 @@ public class PowerUp : MonoBehaviour {
 		if (other.tag == "Player"){
 			Player player = other.GetComponent<Player>();
 			if (player != null){
-				if ( _powerupID  == 0){
+				if (_powerupID  == 0){
 					player.TripleShotPowerUpOn();
 				}
 				else if (_powerupID == 1){
@@ -44,6 +41,33 @@ public class PowerUp : MonoBehaviour {
 			}
 			Destroy(this.gameObject);
 		}
-		
+		else if (other.tag == "Co-Op_Players"){
+			Player player = other.GetComponent<Player>();
+			if (player != null){
+				if (other.name == "Player_One"){
+					if (_powerupID  == 0){
+					player.TripleShotPowerUpOn();
+					}
+					else if (_powerupID == 1){
+						player.SpeedBoostPowerUpOn();
+					}
+					else if(_powerupID == 2){
+						player.EnableShields();
+					}
+				}
+				else{
+					if (_powerupID  == 0){
+					player.TripleShotPowerUpOn();
+					}
+					else if (_powerupID == 1){
+						player.SpeedBoostPowerUpOn();
+					}
+					else if(_powerupID == 2){
+						player.EnableShields();
+					}
+				}
+			Destroy(this.gameObject);
+			}		
+		}
 	}
 }

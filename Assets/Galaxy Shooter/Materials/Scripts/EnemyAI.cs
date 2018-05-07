@@ -31,16 +31,24 @@ public class EnemyAI : MonoBehaviour {
 		}
 	}	
 
-	private void OnTriggerEnter2D(Collider2D other){
-		_uiManager.UpdateScore();
+	private void OnTriggerEnter2D(Collider2D other){	
 		AudioSource.PlayClipAtPoint(_clip, Camera.main.transform.position);
 		if (other.tag == "Laser"){
+			_uiManager.UpdateScore();
 			if (other.transform.parent != null){
 				Destroy(other.transform.parent.gameObject);
 			}
 			Destroy(other.gameObject);
-			Instantiate(_enemyExplosionPrefab, transform.position, Quaternion.identity);
-			
+			Instantiate(_enemyExplosionPrefab, transform.position, Quaternion.identity);	
+			Destroy(this.gameObject);
+		}
+		else if (other.tag == "Laser_Red"){
+			_uiManager.PlayerTwoUpdateScore();
+			if (other.transform.parent != null){
+				Destroy(other.transform.parent.gameObject);
+			}
+			Destroy(other.gameObject);
+			Instantiate(_enemyExplosionPrefab, transform.position, Quaternion.identity);	
 			Destroy(this.gameObject);
 		}
 		else if(other.tag == "Player"){
@@ -48,7 +56,19 @@ public class EnemyAI : MonoBehaviour {
 			if (player != null){
 				player.Damage();
 			}
-
+			Instantiate(_enemyExplosionPrefab, transform.position, Quaternion.identity);
+			Destroy(this.gameObject);
+		}		
+		else if (other.tag == "Co-Op_Players"){
+			Player player = other.GetComponent<Player>();
+			if (player != null){
+				if (other.name == "Player_One"){
+					player.PlayerOneDamage();
+				}
+				else{
+					player.PlayerTwoDamage();
+				}
+			}		
 			Instantiate(_enemyExplosionPrefab, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);	
 		}
